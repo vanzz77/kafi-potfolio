@@ -4,33 +4,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
+  <title>Hubungi Saya | Kafi Akmal Falah</title>
+  <meta name="description" content="Punya proyek atau ide? Hubungi Kafi Akmal Falah lewat formulir, email, telepon, atau WhatsApp.">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-nevo.svg?v=2">
+  <link rel="canonical" href="https://www.kafiakmal.web.id/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kafi Akmal Falah">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="Hubungi Saya | Kafi Akmal Falah">
+  <meta property="og:description" content="Punya proyek atau ide? Hubungi Kafi Akmal Falah lewat formulir, email, telepon, atau WhatsApp.">
+  <meta property="og:url" content="https://www.kafiakmal.web.id/contact.html">
+  <meta property="og:image" content="https://www.kafiakmal.web.id/assets/profile.jpeg">
+  <meta property="og:image:alt" content="Foto Kafi Akmal Falah">
+  <meta name="twitter:card" content="summary">
   <!-- Font Serif Elegant & Sans-Serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
   <header class="site-header">
     <div class="wrap nav-inner">
-      <a class="logo" href="index.html" aria-label="NEVO, ke halaman utama">
-        <img src="/assets/logo-nevo.svg" alt="NEVO">
+      <a class="logo" href="/" aria-label="NEVO, ke halaman utama">
+        <img src="/assets/logo-nevo.svg" alt="NEVO" width="88" height="28">
       </a>
-      <nav class="navlinks" aria-label="Navigasi utama">
+      <nav class="navlinks" data-lenis-prevent aria-label="Navigasi utama">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="projek.html">Projek</a></li>
+          <li><a href="projek.html">Proyek</a></li>
           <li><a href="contact.html" aria-current="page">Contact</a></li>
         </ul>
       </nav>
+      <a class="nav-cta" href="contact.html" hidden>Hubungi Saya <svg class="icon-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <button class="menu-toggle" aria-label="Toggle menu">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
@@ -40,47 +54,168 @@
 
   <!-- Header / Hero Section Kontak -->
   <header class="contact-hero">
-    <h1>Contact Us</h1>
-    <p class="subtitle">Tolong hubungi saya jika anda memiliki pertanyaan.
+    <h1>Hubungi Saya</h1>
+    <p class="subtitle">Punya pertanyaan atau ide proyek? Kirim pesan, saya balas secepatnya.</p>
   </header>
 
   <main class="contact-container">
     <!-- Form Kontak -->
-    <section class="form-section">
-      <form class="form-kontak" action="#" method="post">
+    <section class="form-section reveal">
+      <form class="form-kontak" id="form-kontak" action="/api/contact" data-endpoint="/api/contact" method="post" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <input type="text" id="nama" name="nama" placeholder="Enter Name" required>
+            <label class="sr-only" for="nama">Nama lengkap</label>
+            <input type="text" id="nama" name="nama" placeholder="Nama lengkap" autocomplete="name"
+              required aria-describedby="nama-error">
+            <p class="field-error" id="nama-error" aria-live="polite"></p>
           </div>
           <div class="form-group">
-            <input type="email" id="email" name="email" placeholder="Enter Email" required>
+            <label class="sr-only" for="email">Alamat email</label>
+            <input type="email" id="email" name="email" placeholder="Alamat email" autocomplete="email"
+              required aria-describedby="email-error">
+            <p class="field-error" id="email-error" aria-live="polite"></p>
           </div>
         </div>
 
         <div class="form-group">
-          <input type="tel" id="phone" name="phone" placeholder="Your Phone">
+          <label class="sr-only" for="phone">Nomor telepon (opsional)</label>
+          <input type="tel" id="phone" name="phone" placeholder="Nomor telepon (opsional)" autocomplete="tel">
         </div>
 
         <div class="form-group">
-          <textarea id="pesan" name="pesan" rows="4" placeholder="Your Message" required></textarea>
+          <label class="sr-only" for="pesan">Ceritakan kebutuhan atau idemu</label>
+          <textarea id="pesan" name="pesan" rows="4" placeholder="Ceritakan kebutuhan atau idemu"
+            required minlength="10" aria-describedby="pesan-error"></textarea>
+          <p class="field-error" id="pesan-error" aria-live="polite"></p>
         </div>
 
-        <button type="submit" class="btn-kirim">Send Message</button>
+        <!-- Honeypot anti-spam: disembunyikan dari pengguna, diisi oleh bot -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Jangan diisi</label>
+          <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="btn-kirim" data-state="idle">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-label">Kirim Pesan</span>
+        </button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </section>
 
-    <!-- Informasi Kontak Tambahan -->
-    <section class="info-section">
+    <!-- Informasi Kontak -->
+    <section class="info-section reveal">
       <div class="info-block">
-        <h3>Information contact</h3>
-        <p>Anda dapat menghubungi saya melalui email atau telepon.
-        <p class="info-highlight">+62 813-8136-7040</p>
-        <p class="info-highlight">kafiakmalfalah91@gmail.com</p>
-      </div>
-
+        <h3>Informasi Kontak</h3>
+        <p>Kamu dapat menghubungi saya melalui email, telepon, atau WhatsApp.</p>
+        <ul class="contact-links">
+          <li>
+            <a href="tel:+6281381367040">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+              +62 813-8136-7040
+            </a>
+          </li>
+          <li>
+            <a href="mailto:kafiakmalfalah91@gmail.com">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              kafiakmalfalah91@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/6281381367040?text=Halo%20Kafi%2C%20saya%20ingin%20berdiskusi%20tentang%20proyek." target="_blank" rel="noopener noreferrer" aria-label="Chat lewat WhatsApp, buka di tab baru">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-.8.9a4.3 4.3 0 0 1-2.2-2.2l.9-.8-1-2.2z"/></svg>
+              Chat lewat WhatsApp
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/vanzz77" target="_blank" rel="noopener noreferrer" aria-label="GitHub vanzz77, buka di tab baru">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+              GitHub: vanzz77
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
   </main>
+  <footer class="footer">
+    <div class="footer-inner">
+        <div class="f-grid">
+          <div class="f-brand">
+            <a class="f-logo" href="/" aria-label="NEVO, ke halaman utama">
+              <img src="/assets/logo-nevo.svg" alt="NEVO" width="88" height="28">
+            </a>
+            <p class="f-name">Kafi Akmal Falah</p>
+            <p class="f-role">Frontend Developer Junior &amp; UI/UX Designer</p>
+            <span class="a-status"><span class="dot"></span> Terbuka untuk proyek baru</span>
+          </div>
+
+          <div class="f-col">
+            <h3 class="f-title">Kontak</h3>
+            <ul>
+              <li><span class="f-label">Phone</span> <a href="tel:+6281381367040">081381367040</a></li>
+              <li><span class="f-label">Email</span> <a href="mailto:kafiakmalfalah91@gmail.com">kafiakmalfalah91@gmail.com</a></li>
+              <!-- TODO: ganti "Lisensi" jadi label yang benar (mis. Lokasi) setelah isinya dikonfirmasi
+              <li><span class="f-label">Lokasi</span> ...</li> -->
+            </ul>
+          </div>
+
+          <div class="f-col" role="navigation" aria-label="Menu footer">
+            <h3 class="f-title">Menu</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="projek.html">Proyek</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="f-col">
+            <h3 class="f-title">Layanan</h3>
+            <ul>
+              <li>Web Design</li>
+              <li>Web Development</li>
+              <li>UI/UX Design</li>
+            </ul>
+          </div>
+
+          <div class="f-col f-social">
+            <h3 class="f-title">Terhubung</h3>
+            <ul>
+              <li>
+                <a href="https://www.instagram.com/clare_zhuan22" target="_blank" rel="noopener" aria-label="Instagram @clare_zhuan22, buka di tab baru">
+                  <span class="f-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></span><span class="f-handle">@clare_zhuan22</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/kafi-akmal-falah-2a3440412/" target="_blank" rel="noopener" aria-label="LinkedIn Kafi Akmal Falah, buka di tab baru">
+                  <span class="f-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 9.5v8M6.5 6.2v.1M11 17.5v-8M11 12.8c0-2 1.2-3.3 3-3.3s3 1.2 3 3.4v4.6"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg></span><span class="f-handle">Kafi Akmal Falah</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/vanzz77" target="_blank" rel="noopener" aria-label="GitHub vanzz77, buka di tab baru">
+                  <span class="f-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></span><span class="f-handle">vanzz77</span>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:kafiakmalfalah91@gmail.com" aria-label="Kirim email ke kafiakmalfalah91@gmail.com">
+                  <span class="f-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="f-handle">kafiakmalfalah91@gmail.com</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      <div class="f-bottom">
+        <a class="f-mini-logo" href="/" aria-label="NEVO, ke halaman utama">
+          <img src="/assets/logo-nevo.svg" alt="NEVO" width="88" height="28">
+        </a>
+        <p class="f-copy">&copy; <span id="tahun">2026</span> Kafi Akmal Falah. Hak cipta dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="lenis.min.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
